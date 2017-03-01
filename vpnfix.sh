@@ -113,6 +113,12 @@ echo 'Setting key lifetime to 4 hours'
 
 sed -i -e 's/proposal_check obey;/proposal_check claim;/' /etc/racoon/remote/*.conf
 echo 'Changing proposal_check from obey to claim'
+
+sed -i -e 's/dpd_delay 20;/dpd_delay 0;/' /etc/racoon/remote/*.conf
+echo 'Changing dpd_delay from 20 to 0'
+
+sed -i -e '/local_address/d' /etc/racoon/remote/*.conf
+echo 'Deleting the local_address line'
  
 launchctl stop com.apple.racoon
 launchctl start com.apple.racoon
